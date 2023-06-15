@@ -1,0 +1,438 @@
+if (isset($_POST['liked'])) {
+// update likes in database
+$post_id = $_POST['post_id'];
+// $user_id = $_SESSION['user_id'];
+
+
+// check if user has already liked the post
+$query = "SELECT * FROM post WHERE post_id = '$post_id'";
+$result = mysqli_query($conn, $query);
+// if (mysqli_num_rows($result) > 0) {
+// // user has already liked the post, do nothing
+// } else {
+// // user has not liked the post yet, add a new like
+// $query = "INSERT INTO post (post_id) VALUES ('$post_id')";
+// $result = mysqli_query($conn, $query);
+// var_dump($result) or die();
+// // update likes count in the post table
+// $query = "UPDATE `post` SET likes = likes + 1 WHERE post_id = '$post_id'";
+// $result = mysqli_query($conn, $query);
+
+// display the updated likes count
+$query = "SELECT likes FROM post WHERE post_id = '$post_id'";
+$result = mysqli_query($conn, $query);
+$row = mysqli_fetch_assoc($result);
+$likes = $row['likes'];
+echo "<button class='likebtn' name='liked' value='liked'>$likes Like</button>";
+}
+// }
+// else {
+// echo "<button class='likebtn' name='liked' value='liked'>$likes Like</button>";
+// }
+
+
+
+try {
+$query = "SELECT * FROM post ORDER BY post_id DESC";
+$result = mysqli_query($conn, $query);
+if (!$result) {
+throw new Exception("Error executing query: " . mysqli_error($conn));
+}
+while ($row = mysqli_fetch_assoc($result)) {
+$post_id = $row['post_id'];
+$title = $row['post_title'];
+$content = $row['post_text'];
+$image = $row['post_picture'];
+$likes = $row['likes'];
+$comments = $row['comments'];
+$tags = $row['tags'];
+
+// Check if the user has already liked the post
+$liked = false;
+if (isset($_SESSION['user_id'])) {
+$user_id = $_SESSION['user_id'];
+$check_query = "SELECT * FROM post WHERE post_id = $post_id AND user_id = $user_id";
+$check_result = mysqli_query($conn, $check_query);
+if (mysqli_num_rows($check_result) > 0) {
+$liked = true;
+}
+}
+
+echo "<article>";
+	echo "<h3>$title</h3>";
+	if ($image) {
+	echo "<img src='$image' alt='Post Image'>";
+	}
+	echo "<p>$content</p>";
+	echo "<div class='post-details'>";
+		echo "<button class='likebtn' name='liked' value='liked'>$likes Like</button>";
+		echo "<span class='comments'>$comments Comments</span>";
+		echo "<span class='tags'>$tags</span>";
+		echo "</div>";
+	echo "</article>";
+}
+} catch (Exception $e) {
+echo "Error: " . $e->getMessage();
+}
+
+
+$query = "SELECT * FROM post ORDER BY post_id DESC";
+$result = mysqli_query($conn, $query);
+if (!$result) {
+throw new Exception("Error executing query: " . mysqli_error($conn));
+}
+
+while ($row = mysqli_fetch_assoc($result)) {
+$post_id = $row['post_id'];
+$title = $row['post_title'];
+$content = $row['post_text'];
+$image = $row['post_picture'];
+$likes = $row['likes'];
+$comments = $row['comments'];
+$tags = $row['tags'];
+
+// Check if the user has already liked the post
+$liked = false;
+
+echo "<article>";
+	echo "<h3>$title</h3>";
+	if ($image) {
+	echo "<img src='$image' alt='Post Image'>";
+	}
+	echo "<p>$content</p>";
+	echo "<div class='post-details'>";
+		echo "<button class='likebtn' name='liked' value='liked'><i class='fa fa-thumbs-up'></i>$likes Like</button>";
+		echo "<span class='comments'>$comments Comments</span>";
+		echo "<span class='tags'>$tags</span>";
+		echo "</div>";
+	echo "</article>";
+}
+
+
+https://codewithawa.com/posts/like-and-unlike-system-using-php-and-mysql-database
+
+
+amended codewithawa
+
+// Handle like button click
+if (isset($_POST['like'])) {
+$post_id = $_POST['like'];
+
+// Update the likes count in the database
+$query = "UPDATE post SET likes = likes + 1 WHERE post_id = $post_id";
+mysqli_query($conn, $query);
+
+// Reload the page to show the updated likes count
+header('Location: index.php');
+exit();
+}
+
+// Display posts and like button
+$sql = "SELECT * FROM post";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+echo $row['post_text'] . '&nbsp;';
+echo '<form method="post">';
+	echo '<button type="submit" name="like" value="' . $row['post_id'] . '">Like (' . $row['likes'] . ')</button>';
+	echo '</form>';
+echo '
+<hr />';
+}
+?>
+
+
+============= working code ?
+if (isset($_POST['like'])) {
+$post_id = $_POST['like'];
+
+// Update the likes count in the database
+$query = "UPDATE post SET likes = likes + 1 WHERE post_id = $post_id";
+mysqli_query($conn, $query);
+}
+
+// Display posts and like button
+$sql = "SELECT * FROM post";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+echo $row['post_text'] . '&nbsp;';
+echo '<form method="post">';
+	echo '<button type="submit" name="like" value="' . $row['post_id'] . '">Like (' . $row['likes'] . ')</button>';
+	echo '</form>';
+echo '
+<hr />';
+}
+?>
+
+
+
+
+
+<h1>PHP Like System</h1>
+<?php
+// Handle like button click
+if (isset($_POST['like'])) {
+	$post_id = $_POST['like'];
+
+	// Update the likes count in the database
+	$query = "UPDATE post SET likes = likes + 1 WHERE post_id = $post_id";
+	mysqli_query($conn, $query);
+
+	// Reload the page to show the updated likes count
+	// header('Location: index.php');
+	// exit();
+}
+
+// Display posts and like button
+$sql = "SELECT * FROM post";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+	echo $row['post_text'] . '&nbsp;';
+	echo '<form method="post">';
+	echo '<button type="submit" name="like" value="' . $row['post_id'] . '">Like (' . $row['likes'] . ')</button>';
+	echo '</form>';
+	echo '<hr />';
+}
+?>
+
+
+
+<div class="row g-3">
+	<div class="col-md-4">
+		<label for="likes" class="form-label">Likes:</label>
+		<input type="number" class="form-control" id="likes" name="likes" value="0">
+	</div>
+	<div class="col-md-4">
+		<label for="comments" class="form-label">Comments:</label>
+		<input type="number" class="form-control" id="comments" name="comments" value="0">
+	</div>
+
+
+
+
+	<?php
+	//display comments
+	$cmt_count = "SELECT COUNT(*) as total_comments FROM comment WHERE post_id = '$post_id'";
+	$result_count = mysqli_query($conn, $cmt_count);
+	$row_count = mysqli_fetch_assoc($result_count);
+	$total_comments = $row_count['total_comments'];
+	?>
+
+
+
+.card-title a {
+  text-decoration: none; /* remove underline */
+  color: #007bff; /* set link color to Bootstrap primary color */
+  cursor: pointer; /* show hand cursor on hover */
+}
+
+.fa-thumbs-up,
+.fa-thumbs-o-up {
+  transform: rotateY(-180deg);
+  font-size: 1.3em;
+}
+.post {
+  width: 30%;
+  margin: 10px auto;
+  border: 1px solid #cbcbcb;
+  padding: 5px 10px 0px 10px;
+}
+.like,
+.unlike,
+.likes_count {
+  color: rgb(145, 145, 238);
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.like:hover {
+  color: red;
+}
+
+.card {
+  z-index: -1;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-primary,
+.btn-secondary {
+  color: #fff;
+  border-radius: 0;
+}
+
+.like-count {
+  margin-right: 5px;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.badge {
+  margin-right: 5px;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.likebtn {
+  background: #645050;
+  border: unset;
+  outline: 0;
+  font-size: 10px;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+header {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+nav ul {
+  display: flex;
+  list-style: none;
+}
+nav ul li {
+  margin-right: 20px;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+nav ul li a {
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+nav ul li a:hover {
+  background-color: #666;
+}
+main {
+  display: flex;
+  margin-top: 120px;
+  padding: 20px;
+}
+section#sidebar {
+  width: 25%;
+  margin-right: 20px;
+}
+section#sidebar h2 {
+  margin-bottom: 10px;
+}
+section#sidebar ul li {
+  margin-bottom: 10px;
+}
+section#sidebar ul li a {
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+section#sidebar ul li a:hover {
+  background-color: #f2f2f2;
+}
+section#posts {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+}
+section#posts h2 {
+  margin-bottom: 20px;
+  width: 100%;
+}
+article {
+  width: calc(33.33% - 20px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+article img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+article h3 {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  font-size: 18px;
+}
+article p {
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.post-details {
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.post-details span {
+  font-size: 14px;
+}
+.post-details span.likes {
+  color: #27ae60;
+}
+.post-details span.comments {
+  color: #2980b9;
+  font-size: 14px;
+}
+.post-details span.tags {
+  color: #e67e22;
+}
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  /* position: fixed; */
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+footer p {
+  font-size: 14px;
+} */

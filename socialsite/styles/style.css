@@ -1,0 +1,316 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+html{
+  background-color: #000;
+  
+}
+
+.same{
+  background-color: 	#338B2E;
+}
+
+.same:hover{
+  background-color: #055a11;
+  color:#fff;
+  font-weight: bold;
+}
+
+body{
+  background-color: #000000; 
+  
+}
+
+.editpost{
+  color: #f0f0f0!important;
+  font-size: 15px!important;
+  border: 1px solid white !important;
+}
+
+label{
+  color:white;
+}
+
+.profile{
+  color:white;
+}
+
+.form{
+  color: #f1efff!important; /* set link color to Bootstrap primary color */
+}
+
+.form button{
+  background-color: 	#20b2aa;
+}
+
+.form button:hover{
+  background-color: #f0f0f0;
+}
+
+.card-title {
+  text-decoration: none; /* remove underline */
+  color: #fff!important; /* set link color to Bootstrap primary color */
+  cursor: pointer; /* show hand cursor on hover */
+}
+
+.card-text{
+  color: #fff!important;
+}
+
+.fa-thumbs-up,
+.fa-thumbs-o-up {
+  transform: rotateY(-180deg);
+  font-size: 1.3em;
+}
+.post {
+  width: 30%;
+  margin: 10px auto;
+  border: 1px solid #cbcbcb;
+  padding: 5px 10px 0px 10px;
+}
+
+#posts h2{
+  color:#ffffff;
+  justify-content: center;
+}
+
+.like,
+.likes_count {
+  color: 	RGB(187, 62, 132);
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.fa{
+  color: #20b2aa!important; 
+  font-size: 25px!important;
+}
+
+.fa:hover{
+  color: #fff;
+}
+
+.like:hover {
+  color: rgb(96, 216, 16);
+}
+
+.card {
+
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.966);
+  background-color: 	#20b2aa!important;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-primary,
+.btn-secondary {
+  color: #fff;
+  border-radius: 10px;
+}
+
+.like-count {
+  margin-right: 5px;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.badge {
+  margin-right: 5px;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.likebtn {
+  background: #645050;
+  border: unset;
+  outline: 0;
+  font-size: 10px;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+header {
+  /* background-color: #333; */
+  background-color: 	#20b2aa;
+  color: #ffffff!important; /* set link color to Bootstrap primary color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.navbar-brand{
+  color: #ffffff!important; /* set link color to Bootstrap primary color */
+}
+nav ul {
+  display: flex;
+  list-style: none;
+}
+nav ul li {
+  margin-right: 20px;
+}
+nav ul li:last-child {
+  margin-right: 0;
+}
+nav ul li a {
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  color: #ffffff!important;
+}
+nav ul li a:hover {
+  background-color: #CCC4FF ;
+
+}
+main {
+  display: flex;
+  margin-top: 95px;
+  padding: 20px;
+  background-color: #000;
+  
+}
+section#sidebar {
+  width: 100%;
+  margin-right: 20px;
+  padding: 10px;
+  background-color: 	#20b2aa;
+}
+section#sidebar h2 {
+  margin-bottom: 10px;
+  text-align: center;
+  color: #ffffff!important;
+}
+
+section#sidebar ul {
+  padding: 0!important;
+  background-color:	#20b2aa;
+}
+
+section#sidebar ul li {
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 0;
+}
+section#sidebar ul li a {
+  display: block;
+  padding: 8px;
+  border-radius: 5px;
+  color:#fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+  text-decoration: none;  
+  text-align: center;
+}
+section#sidebar ul li a:hover {
+  background-color: #7d6bec;
+}
+section#posts {
+  display: flex;
+  flex-wrap: wrap;
+}
+section#posts h2 {
+  margin-top: 15px;
+  text-align: center;
+  margin-bottom: 5px;
+  width: 100%;
+}
+article {
+  width: calc(33.33% - 20px);
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+article img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+article h3 {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  font-size: 18px;
+}
+article p {
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.post-details {
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.post-details span {
+  font-size: 14px;
+}
+.post-details span.likes {
+  color: #20b2aa;
+}
+.post-details span.comments {
+  color: #20b2aa;
+  font-size: 14px;
+}
+.post-details span.tags {
+  color: #e67e22;
+}
+footer {
+  background-color: 	#20b2aa;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+  /* position: fixed; */
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+footer p {
+  font-size: 14px;
+} 
